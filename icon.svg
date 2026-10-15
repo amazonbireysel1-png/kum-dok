@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="20%" r="85%">
+      <stop offset="0" stop-color="#2a2f78"/>
+      <stop offset="1" stop-color="#0a0c1e"/>
+    </radialGradient>
+    <linearGradient id="sand" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffe29a"/>
+      <stop offset=".55" stop-color="#ffb347"/>
+      <stop offset="1" stop-color="#e0832b"/>
+    </linearGradient>
+    <linearGradient id="funnel" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#6a74b8"/>
+      <stop offset=".45" stop-color="#cfd6ff"/>
+      <stop offset="1" stop-color="#6a74b8"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <!-- huni -->
+  <path d="M150 70h212l-78 86v22h-56v-22z" fill="url(#funnel)"/>
+  <!-- akan kum -->
+  <g fill="#f3c970">
+    <circle cx="256" cy="196" r="9"/><circle cx="248" cy="216" r="9"/><circle cx="262" cy="232" r="9"/>
+  </g>
+  <!-- çizgi (rampa) -->
+  <path d="M206 250 L330 318" stroke="#0a0c1e" stroke-width="30" stroke-linecap="round" opacity=".6"/>
+  <path d="M206 250 L330 318" stroke="#3fe0c5" stroke-width="22" stroke-linecap="round"/>
+  <g fill="#f3c970">
+    <circle cx="300" cy="286" r="9"/><circle cx="322" cy="296" r="9"/><circle cx="342" cy="330" r="9"/><circle cx="350" cy="352" r="9"/>
+  </g>
+  <!-- cam bardak ve kum -->
+  <path d="M286 372h132v66a18 18 0 0 1-18 18h-96a18 18 0 0 1-18-18z" fill="url(#sand)"/>
+  <path d="M278 330v108a26 26 0 0 0 26 26h96a26 26 0 0 0 26-26V330" fill="none" stroke="#bfe0ff" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
