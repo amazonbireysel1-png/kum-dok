@@ -107,7 +107,7 @@ html,body{overscroll-behavior:none;position:fixed;inset:0;width:100%}
 @media (max-height:640px){.logo{font-size:56px}.btn.primary{min-height:54px}.tools{padding-top:6px}}
 /* ---- dünya sekmeleri ve bölüm ızgarası ---- */
 .wbar{flex:none;display:flex;flex-direction:column;gap:6px;margin-bottom:10px}
-.wtabs{display:grid;grid-template-columns:repeat(10,1fr);gap:5px}
+.wtabs{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
 .wtab{position:relative;height:38px;border-radius:11px;background:var(--glass);border:1px solid var(--line);font-family:var(--display);font-size:16px;font-weight:800;color:var(--muted);display:grid;place-items:center}
 .wtab i{position:absolute;right:1px;top:-2px;font-style:normal;font-size:9px}
 .wtab.sel{background:linear-gradient(180deg,#ffd27a,#ffb347);color:var(--accent-ink);border-color:transparent}
