@@ -2,7 +2,7 @@
    Sürüm 5 = 115 bölüm. kd4 (300 bölüm) ve kd3 (v1) kayıtları OLDMAP ile yeni numaralara taşınır. */
 (function(root){
 'use strict';
-var VER=5, KEY='kd5', OLD_KEYS=['kd4','kd3'], MAX_HINTS=9, GIFT_CAP=5;
+var VER=6, KEY='kd6', MAX_HINTS=9, GIFT_CAP=5;
 
 function isObj(o){ return !!o&&typeof o==='object'&&!Array.isArray(o); }
 function cleanMap(m,maxv){ var o={}; if(!isObj(m))return o; for(var k in m){ var v=+m[k]; if(isFinite(v)&&v>0&&v<=maxv)o[k]=Math.round(v); } return o; }
@@ -25,10 +25,9 @@ function remap(m,map){ var o={}; if(!isObj(m))return o; for(var k in m){ var nk=
 function load(read,oldmap){
   var d=parse(read(KEY));
   if(isObj(d))return normalize(d);
-  for(var i=0;i<OLD_KEYS.length;i++){
-    var old=parse(read(OLD_KEYS[i]));
-    if(isObj(old)){ old=Object.assign({},old); old.stars=remap(old.stars,oldmap); old.skipped=remap(old.skipped,oldmap); old.fails=remap(old.fails,oldmap); return normalize(old); }
-  }
+  /* sürüm 6: bölümler yeniden tasarlandı, eski bölüm numaraları geçersiz. Ayarlar ve ipucu hakları taşınır, yıldızlar sıfırlanır. */
+  var old=parse(read('kd5'));
+  if(isObj(old)){ old=Object.assign({},old); old.stars={}; old.skipped={}; old.fails={}; old.world=1; old.ach={}; old.seen={}; return normalize(old); }
   return normalize(null);
 }
 /* Zafer kaydı. Yeni nesne döner; ilk patron/günlük zaferinde ._reward=1 (+1 ipucu verildi). */

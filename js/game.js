@@ -483,12 +483,12 @@ function achievements(){
    {id:'first',name:'İlk Dökülüş',desc:'Bir bölümü bitir',ok:function(){return Object.keys(mem.stars).length>=1;}},
    {id:'three',name:'Ustalık',desc:'Bir bölümü 3 yıldızla bitir',ok:function(){for(var k in mem.stars)if(mem.stars[k]>=3)return true;return false;}},
    {id:'ten',name:'Yıldız Toplayıcı',desc:'Toplam 10 yıldıza ulaş',ok:function(){return totalStars()>=10;}},
-   {id:'flip',name:'Ters Dünya',desc:'6. bölümü bitir',ok:function(){return !!mem.stars[6];}},
+   {id:'flip',name:'Ters Dünya',desc:'Ters Dünya dünyasında bir bölüm bitir',ok:function(){return worldDone(6)>=1;}},
    {id:'streak3',name:'Üç Gün Üst Üste',desc:'Günlük seriyi 3 yap',ok:function(){return mem.best>=3;}},
    {id:'w1',name:'Dünya 1 Bitti',desc:'Temel Mekanikler dünyasını tamamla',ok:function(){return worldDone(1)>=worldCount(1);}},
-   {id:'w5',name:'Yarı Yol',desc:'60 bölümü bitir',ok:function(){return Object.keys(mem.stars).length>=60;}},
+   {id:'w5',name:'Yarı Yol',desc:'Bölümlerin yarısını bitir',ok:function(){return Object.keys(mem.stars).length>=Math.ceil(LEVELS.length/2);}},
    {id:'stars100',name:'Yıldız Avcısı',desc:'Toplam 100 yıldıza ulaş',ok:function(){return totalStars()>=100;}},
-   {id:'all',name:'Kum Efendisi',desc:'115 bölümün hepsini bitir',ok:function(){return Object.keys(mem.stars).length>=LEVELS.length;}},
+   {id:'all',name:'Kum Efendisi',desc:'Bütün bölümleri bitir',ok:function(){return Object.keys(mem.stars).length>=LEVELS.length;}},
    {id:'burn',name:'Lavın Efendisi',desc:'Toplam 500 kum tanesini lavda kaybet',ok:function(){return mem.stat.burned>=500;}}
   ];
   return A;
@@ -575,7 +575,7 @@ function renderHome(){
 }
 function renderLevels(){
   var tabs=$('worldTabs'); tabs.innerHTML='';
-  var cur=mem.world||1;
+  var cur=Math.min(WORLDS.length,mem.world||1);
   WORLDS.forEach(function(W){
     var b=document.createElement('button'); b.type='button'; b.className='wtab'+(W.id===cur?' sel':'');
     var firstIdx=wRange(W.id)[0], open=isUnlocked(firstIdx);
@@ -617,7 +617,7 @@ function renderCollection(){
 }
 function renderStats(){
   var s=mem.stat;
-  var rows=[['Toplam yıldız',totalStars()],['Biten bölüm',Object.keys(mem.stars).length+' / '+LEVELS.length],['Biten dünya',(function(){var c=0;for(var w=1;w<=10;w++)if(worldDone(w)>=worldCount(w))c++;return c;})()+' / 10'],['Günlük bulmaca',Object.keys(mem.daily).length+' gün'],
+  var rows=[['Toplam yıldız',totalStars()],['Biten bölüm',Object.keys(mem.stars).length+' / '+LEVELS.length],['Biten dünya',(function(){var c=0;for(var w=1;w<=WORLDS.length;w++)if(worldDone(w)>=worldCount(w))c++;return c;})()+' / '+WORLDS.length],['Günlük bulmaca',Object.keys(mem.daily).length+' gün'],
     ['En uzun seri',mem.best+' gün'],['Dökülen kum',s.poured],['Lavda yanan kum',s.burned],['Çevrilen yerçekimi',s.flips],['Deneme / başarı',s.plays+' / '+s.wins]];
   var g=$('stGrid'); g.innerHTML='';
   rows.forEach(function(r){ var d=document.createElement('div'); d.className='stat'; d.innerHTML='<span>'+r[0]+'</span><b>'+r[1]+'</b>'; g.appendChild(d); });

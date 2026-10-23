@@ -2,42 +2,7 @@
 (function(root){
 var K=(typeof module!=='undefined'&&module.exports)?require('./engine.js'):root.KD;
 var RED=K.RED,BLUE=K.BLUE;
-var LEVELS=[
- {id:1,name:'İlk Dökülüş',teach:'Çiz',hint:'Parmağınla bir kaydırak çiz. Bırakınca kum akar.',
-  ink:260,flips:0,
-  emitters:[{x:120,y:55,n:360,rate:1.5}],
-  cups:[{x:250,y:470,w:100,h:110,fill:0.6}]},
- {id:2,name:'Renk Ayırıcı',teach:'Renk',hint:'Kırmızı sola, mavi sağa. Ortaya bir çatı çiz.',
-  ink:380,flips:0,
-  emitters:[{x:185,y:55,n:300,rate:0.8,color:RED},{x:215,y:55,n:300,rate:0.8,color:BLUE}],
-  cups:[{x:30,y:470,w:110,h:110,fill:0.5,color:RED},{x:260,y:470,w:110,h:110,fill:0.5,color:BLUE}]},
- {id:3,name:'Lav Havuzu',teach:'Lav',hint:'Lav kumu yakar. Kumu lavın iki yanından geçir.',
-  ink:260,flips:0,
-  emitters:[{x:200,y:55,n:520,rate:1.5,spread:9}],
-  lava:[{x:160,y:300,w:80,h:30}],
-  cups:[{x:30,y:470,w:110,h:110,fill:0.5},{x:260,y:470,w:110,h:110,fill:0.5}]},
- {id:4,name:'Yan Kapı',teach:'Çatı',hint:'Bardakların çatısı var. Kumu yandan içeri sok.',
-  ink:320,flips:0,
-  emitters:[{x:200,y:55,n:520,rate:1.5,spread:9}],
-  cups:[{x:30,y:380,w:120,h:130,roof:true,open:'R',lip:50,fill:0.35,thr:0.7},
-        {x:250,y:380,w:120,h:130,roof:true,open:'L',lip:50,fill:0.35,thr:0.7}]},
- {id:5,name:'Duvarı Aş',teach:'Engel',hint:'Duvarın üstünden aşır. Altı lav.',
-  ink:220,flips:0,
-  emitters:[{x:100,y:55,n:440,rate:1.5}],
-  walls:[{x:195,y:300,w:10,h:295}],
-  lava:[{x:5,y:540,w:190,h:55}],
-  cups:[{x:215,y:470,w:130,h:110,fill:0.5}]},
- {id:6,name:'Ters Dünya',teach:'Yerçekimi',hint:'Kum dolunca ⇅ ile yerçekimini çevir.',
-  ink:0,flips:3,autostart:true,
-  emitters:[{x:200,y:195,n:340,rate:1.5}],
-  cups:[{x:150,y:5,w:100,h:110,dir:'down',fill:0.4},
-        {x:150,y:490,w:100,h:105,count:false}]},
- {id:7,name:'Çevir ve Çiz',teach:'Çevir + çiz',hint:"Önce kumun dolmasını bekle. Sonra bir köprü çiz ve ⇅ bas.",
-  ink:280,flips:2,
-  emitters:[{x:90,y:55,n:380,rate:1.5}],
-  cups:[{x:260,y:5,w:100,h:110,dir:'down',fill:0.4},
-        {x:30,y:490,w:120,h:105,count:false}]}
-];
+var LEVELS=[];   // bölümler levels-data.js içinde
 
 /* ---------- Günlük bulmaca üreticisi (tarih tohumlu, çözüm doğrulamalı) ---------- */
 function hashStr(str){ var h=2166136261; for(var i=0;i<str.length;i++){ h^=str.charCodeAt(i); h=Math.imul(h,16777619);} return h>>>0; }
